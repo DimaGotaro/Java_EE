@@ -51,7 +51,7 @@ public class Servlet2 extends HttpServlet {
         }
         System.out.println();
 
-        // получение имени и значений даже если у одного имени несколько значений
+        // получение имени параметра и нескольких значений параметра
         // http://localhost:8082/EE_war/Servlet2?one=hello&two=hokku&abc=jonh&one=goky
         Map<String, String[]> parameterMap = req.getParameterMap();
         // в ключ передаётся имя параметра, в массив передаются значения параметров
