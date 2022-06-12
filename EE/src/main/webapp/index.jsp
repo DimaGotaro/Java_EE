@@ -12,5 +12,11 @@
 <br/>
 <br/>
 <a href="Servlet1">Servlet 1</a>
+<br/>
+<br/>
+<a href="Servlet2">Servlet 2</a>
+<br/>
+<br/>
+<a href="Servlet3">Servlet 3</a>
 </body>
 </html>
