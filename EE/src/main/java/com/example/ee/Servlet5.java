@@ -61,7 +61,7 @@ public class Servlet5 extends HttpServlet {
         request.setAttribute("users", users);
 
         User tom = new User("Tom", 35);
-        request.setAttribute("user", tom);
+        request.setAttribute("user", tom); // хоть данные и приватны, они всё равно отправятся
 
         getServletContext().getRequestDispatcher("/lesson.jsp").forward(request, response); // перенаправление
     }

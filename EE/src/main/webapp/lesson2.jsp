@@ -23,5 +23,8 @@
         }
     }
 %></ul>
+<h3>Name3: ${param.name3}</h3>
+<h3>Age3: ${paramValues.age3[0]}</h3>
+<h3>Age3: ${paramValues.age3[1]}</h3>
 </body>
 </html>
