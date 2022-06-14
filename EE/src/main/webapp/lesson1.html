@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+<form action="lesson2.jsp" method="POST">
+    Name: <input name="username" />
+    <br><br>
+    Gender: <input type="radio" name="gender" value="female" />Female
+    <input type="radio" name="gender" value="male" />Male
+    <br><br>
+    Country: <select name="country">
+    <option>Iran</option>
+    <option>Turkey</option>
+    <option>China</option>
+    <option>Germany</option>
+</select>
+    <br><br>
+    Courses:
+    <input type="checkbox" name="courses" value="JavaSE" />Java SE
+    <input type="checkbox" name="courses" value="JavaFX" />Java FX
+    <input type="checkbox" name="courses" value="JavaEE" />Java EE
+    <br><br>
+    <input type="submit" value="Submit" />
+</form>
+</body>
+</html>

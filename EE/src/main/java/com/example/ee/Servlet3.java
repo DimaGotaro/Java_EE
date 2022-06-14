@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.Objects;
 
@@ -17,42 +18,63 @@ public class Servlet3 extends HttpServlet {
         String one = req.getParameter("one");
         String two = req.getParameter("two");
         String three = req.getParameter("three");
+        String[] courses = req.getParameterValues("courses");
         // заменим символы в поле ввода, для того что бы избежать взлома от уязвимости XSS, для того что бы нельзя было
         // выполнить код в котором есть <script>
         three = three == null ? "" : three.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
         // если three = null то возвращаем пустое значение, в остадьных случаях заменяем символы в параметре(< на &lt;)
         // в HTML < это &lt;
-        resp.getWriter().println(
-            "<html>\n" +
-            "<head>\n" +
-            "<title>Servlet 3</title>\n" +
-            "<link rel=\"stylesheet\" href=\"styles.css\">" +
-            "</head>\n" +
-            "<body>\n" +
-                "<form action=\"Servlet3\" method='post'>\n" + // куда отправляем значения
-                // если method='get', то данные будут видны в адресной строке в браузере, post - не будут видны
-                // post не будет обработан doGet-ом, для этого определяем doPost и в нём вызываем doGet
-                "<label for=\"name\">one:</label>\n" +
-                "<br/>" +
-                "<input type=\"text\" id=\"name\" name='one'>" +
-                "<br/>" +
-                "<label for=\"name2\">two:</label>\n" +
-                "<br/>" +
-                "<input type=\"text\" id=\"name2\" name='two'>" +
-                "<br/>" +
-                "<label for=\"name3\">three:</label>\n" +
-                "<br/>" +
-                "<textarea name=\"three\" cols=\"50\" rows=\"10\" id=name3></textarea>" +
-                "<br/>" +
-                "<input type=\"submit\" name='submit'>" +
-                "</form>" +
-                " one = " + one + // отображение полученных данных на странице сервлета
-                "<br/>" +
-                " two = " + two +
-                "<br/>" +
-                " three = " + three +
-            "</body>\n" +
-            "</html>");
+        PrintWriter writer = resp.getWriter();
+        try {
+            writer.write(
+                "<html>\n" +
+                "<head>\n" +
+                "<title>Servlet 3</title>\n" +
+                "<link rel=\"stylesheet\" href=\"/EE_war/style.css\">" +
+                "</head>\n" +
+                "<body>\n" +
+                    "<form action=\"Servlet3\" method='post'>\n" + // куда отправляем значения
+                    // если method='get', то данные будут видны в адресной строке в браузере, post - не будут видны
+                    // post не будет обработан doGet-ом, для этого определяем doPost и в нём вызываем doGet
+                    "<label for=\"name\">one:</label>\n" +
+                    "<br/>" +
+                    "<input type=\"text\" id=\"name\" name='one'>" +
+                    "<br/>" +
+                    "<label for=\"name2\">two:</label>\n" +
+                    "<br/>" +
+                    "<input type=\"text\" id=\"name2\" name='two'>" +
+                    "<br/>" +
+                    "<label for=\"name3\">three:</label>\n" +
+                    "<br/>" +
+                    "<textarea name=\"three\" cols=\"50\" rows=\"10\" id=name3></textarea>" +
+                    "<br/>" +
+                    "<input type=\"checkbox\" name=\"courses\" value=\"JavaSE\">Java SE\n" +
+                    "<input type=\"checkbox\" name=\"courses\" value=\"JavaFX\">Java FX\n" +
+                    "<input type=\"checkbox\" name=\"courses\" value=\"JavaEE\">Java EE" +
+                    "<br/>" +
+                    "<input type=\"submit\" name='submit'>" +
+                    "</form>" +
+                    " one = " + one + // отображение полученных данных на странице сервлета
+                    "<br/>" +
+                    " two = " + two +
+                    "<br/>" +
+                    " three = " + three +
+                    "<br/>" +
+                    " courses = ");
+            if (courses != null) { // если courses = null, то ошибка!
+                for (String f:
+                     courses) {
+                    writer.write((String) f);
+                }
+            }
+            writer.write(
+                    "</body>\n" +
+                    "</html>");
+        }
+        finally {
+            writer.flush();
+            writer.close();
+        }
         System.out.println(one);
         System.out.println(two);
         System.out.println(three);

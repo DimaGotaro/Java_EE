@@ -3,4 +3,33 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
+
+    <servlet>
+        <servlet-name>Servlet5</servlet-name>
+        <servlet-class>com.example.ee.Servlet5</servlet-class>
+        <init-param>
+            <param-name>message2</param-name>
+            <param-value>ervlets</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Servlet5</servlet-name>
+        <url-pattern>/Servlet5</url-pattern>
+    </servlet-mapping>
+
+    <context-param>
+        <param-name>message</param-name>
+        <param-value>Hello S</param-value>
+    </context-param>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error.jsp</location>
+    </error-page>
 </web-app>
