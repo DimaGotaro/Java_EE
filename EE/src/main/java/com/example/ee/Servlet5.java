@@ -48,6 +48,7 @@ public class Servlet5 extends HttpServlet {
 
         // Контекст запроса
         request.setAttribute("name", "Tom");
+        request.setAttribute("cod", "<script>alert('Hello gold')</script>");
 
         // Контекст приложения
         ServletContext servletContext = getServletContext();

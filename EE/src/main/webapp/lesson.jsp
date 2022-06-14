@@ -72,5 +72,6 @@
 <br>
 <p>Param user: ${user.name}</p>
 <p>Param user: ${user.age}</p>
+<p><c:out value="${cod}" default="cod" /> </p> <%-- с помощью подключённой библиотеки--%>
 </body>
 </html>
